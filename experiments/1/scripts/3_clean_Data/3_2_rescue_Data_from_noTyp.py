@@ -44,6 +44,11 @@ def is_likely_stock(row):
 # 3. Filter anwenden
 df_rescued = df[df.apply(is_likely_stock, axis=1)].copy()
 
+#Transaktiontyp "Exchange" rausfiltern, da dies oft keine aktiven Aktien-Trades sind
+
+# Wir nehmen das Ergebnis von eben und werfen alles raus, was "Exchange" im Namen hat
+df_rescued = df_rescued[~df_rescued['Transaction'].astype(str).str.contains('Exchange', case=False, na=False)]
+
 # 4. Speichern
 df_rescued.to_csv(output_path, index=False)
 
@@ -85,6 +90,10 @@ def is_likely_option(row):
 
 # Filter anwenden
 df_options = df[df.apply(is_likely_option, axis=1)].copy()
+
+# TransaktionTyp "Exchange" rausfiltern, da dies oft keine aktiven Options-Trades sind
+# Alles rauswerfen, was "Exchange" in der Spalte Transaction hat
+df_options = df_options[~df_options['Transaction'].astype(str).str.contains('Exchange', case=False, na=False)]
 
 # Speichern
 df_options.to_csv(output_path_opt, index=False)
