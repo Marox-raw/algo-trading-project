@@ -1,0 +1,10 @@
+﻿Export: project snapshot with all commit messages
+
+1. Initial commit
+2. Grundlegende Struktur festgelegt und ersten Ansatz ausformuliert
+3. Datensatz congress-trading hinzugef├╝gt
+4. Datensatz congress-trading aufgeteilt in eindeutige Stock-Trading Aktivit├ñten, Option Trades und nicht gelabelte Trades
+5. Datensatz congress-trading aufgeteilt in eindeutige Stock-Trading Aktivit├ñten, Option Trades und nicht gelabelte Trades
+6. Daten aud dem Datensatz noTypDeclaredTrades.csv in likely_stockTrades und likely_OptionTrades extrahiert
+7. Filter out "Exchange" transactions from stock and option trades datasets Also tried to delete unset values, but was not successful
+8. Alle Spalten die <Unset> Werte hattens aus der raw Datei h├ñndisch entfernt (5 Zeilen) da es mit Python nicht geklappt hat. Alle Datens├ñtze die daraus resultieren aktualisiert. Zus├ñtzlich alle Stock Trades und likely stock Trades zusammengef├╝hrt und einen Confidence score hinzugef├╝gt (bei likely Stock trades nur 0.9 bei stock Trades 1)
