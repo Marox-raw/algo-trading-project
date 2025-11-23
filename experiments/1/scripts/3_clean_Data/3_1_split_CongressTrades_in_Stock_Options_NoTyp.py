@@ -1,6 +1,4 @@
 import pandas as pd
-from io import StringIO
-import csv
 
 # 1. Datei laden
 file_path = 'C:/Users/justu/PycharmProjects/algo-trading-project/experiments/1/data/congress-trading-all_raw.csv' # Dateinamen anpassen
@@ -34,15 +32,6 @@ col_ticker = 'Ticker' if 'Ticker' in df_nan.columns else 'chehTicker'
 print(f"Analysiere Spalte '{col_ticker}' auf Fehler...")
 
 
-#Hier noch dran arbeiten!!! das funktioniert noch nicht
-max_len = 100
-ticker_lengths = df_nan[col_ticker].fillna('').astype(str).str.len()
-mask_long = ticker_lengths > max_len
-removed_count = int(mask_long.sum())
-if removed_count:
-    print(f"Entferne {removed_count} Zeilen, deren '{col_ticker}' länger als {max_len} Zeichen ist.")
-df_nan = df_nan[~mask_long]
-
 # Speichern
 output_path_nan = 'C:/Users/justu/PycharmProjects/algo-trading-project/experiments/1/data/noTypDeclaredTrades.csv'
 df_nan.to_csv(output_path_nan, index=False)
@@ -50,7 +39,6 @@ df_nan.to_csv(output_path_nan, index=False)
 print(f"--> 'noTypDeclaredTrades.csv' erstellt mit {len(df_nan)} Zeilen.")
 
 # Check
-print("Beispiel Ticker nach Reparatur:")
 print(df_nan[col_ticker].head(5).values)
 
 # ---------------------------------------------------------
